@@ -1,0 +1,12 @@
+@echo off
+
+setlocal
+
+REM 設定ファイルからパスワードを読み込む
+for /f "delims=" %%i in ('"C:\Windows\System32\findstr.exe /b /c:password= setting.ini"') do set "password=%%i"
+set "password=%password:~9%"
+
+REM フォルダをzip圧縮する
+python zipdir.py "C:\path\to\folder" "archive.zip" "%password%"
+
+endlocal
