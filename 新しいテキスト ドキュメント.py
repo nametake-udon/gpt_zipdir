@@ -23,3 +23,4 @@ if __name__ == '__main__':
     
     # フォルダをzip圧縮する
     zipdir(path, zipname)
+    
