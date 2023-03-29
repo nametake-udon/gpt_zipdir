@@ -1,0 +1,32 @@
+Sub FindNewestFile()
+
+    Dim myFolder As String
+    Dim fileName As String
+    Dim newestFile As String
+    Dim newestDate As Date
+    Dim fileDate As Date
+    
+    '検索するフォルダのパスを設定
+    myFolder = "C:\Users\makoto nishiki\Downloads\"
+    
+    '検索するファイル名を設定
+    fileName = "ほげほげ_*"
+    
+    '指定したフォルダ内のファイルを検索
+    newestFile = Dir(myFolder & fileName)
+    Do While newestFile <> ""
+        'ファイルの更新日を取得
+        fileDate = FileDateTime(myFolder & newestFile)
+        '更新日が最新の場合、ファイル名を更新
+        If fileDate > newestDate Then
+            newestDate = fileDate
+            newestFile = newestFile
+        End If
+        '次のファイルを検索
+        newestFile = Dir
+    Loop
+    
+    '最新のファイル名をA1セルに書き出す
+    Range("A1").Value = newestFile
+    
+End Sub
